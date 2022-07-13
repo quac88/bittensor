@@ -419,7 +419,7 @@ def get_translation_map(from_tokenizer: PreTrainedTokenizerBase,
     """
     translation_map = {'lengths': {}}
 
-    phrases = from_tokenizer.batch_decode(range(len(from_tokenizer.vocab)))  # tokens to strings
+    phrases = from_tokenizer.batch_decode(range(len(from_tokenizer)))  # tokens to strings
 
     to_tokens = to_tokenizer(phrases)['input_ids']  # convert single token from-phrases to to-tokenization
     to_tokens_lens = [len(p) for p in to_tokens]
