@@ -425,7 +425,7 @@ def get_translation_map(from_tokenizer: PreTrainedTokenizerBase,
     to_tokens_lens = [len(p) for p in to_tokens]
     unique_lens = set(to_tokens_lens)
     max_len = max(unique_lens)
-    counts = torch.zeros((max_len, len(to_tokenizer.vocab)), dtype=torch.long)
+    counts = torch.zeros((max_len, len(to_tokenizer)), dtype=torch.long)
 
     for l in unique_lens:  # each unique one-to-many mapping length
         from_idx = [i for i, k in enumerate(to_tokens_lens) if k == l]  # find len l to-tokenizations
