@@ -1266,6 +1266,8 @@ def prep_tokenizer(tokenizer):
     # https://github.com/huggingface/transformers/blob/49c8c67fb815a277405f84dea4a66353e19fb347/tests/models/gpt2/test_modeling_gpt2.py#L532
     if tokenizer.pad_token is None and tokenizer.eos_token is not None:
         tokenizer.pad_token = tokenizer.eos_token
+    elif tokenizer.pad_token is None and tokenizer.bos_token is not None:
+        tokenizer.pad_token = tokenizer.bos_token
     set_vocab_len(tokenizer)
     set_whitespace_preserving(tokenizer)
 
