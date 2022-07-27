@@ -7,7 +7,7 @@ import torch.nn.functional as F
 from types import SimpleNamespace
 from typing import Tuple, Optional
 
-from transformers import AutoModel,AutoTokenizer,AutoConfig, AutoModelForCausalLM
+from transformers import AutoModel,AutoTokenizer,AutoConfig, AutoModelForSeq2SeqLM
 from torch.nn.utils.rnn import pad_sequence
 from bittensor.utils.tokenizer_utils import prep_tokenizer, get_translation_map, translate_logits_to_probs_std, \
     translate_special_token_text, pad_offsets, topk_token_phrases
@@ -62,7 +62,7 @@ class server(torch.nn.Module):
         self.model_name = model_name if model_name != None else config.neuron.model_name
         self.pretrained = pretrained if pretrained != None else config.neuron.pretrained
         if self.pretrained == True:
-            self.pre_model = model if model != None else AutoModelForCausalLM.from_pretrained(self.model_name)
+            self.pre_model = model if model != None else AutoModelForSeq2SeqLM.from_pretrained(self.model_name)
             self.tokenizer = tokenizer
             if tokenizer is None:
                 try:
