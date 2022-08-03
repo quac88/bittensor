@@ -282,6 +282,7 @@ class Axon( bittensor.grpc.BittensorServicer ):
                     priority = priority,
                     hotkey= request.hotkey
                 )
+                print(self.forward_timeout)
                 forward_response_tensors, forward_codes, forward_messages = future.result( timeout= self.forward_timeout )
             else:
                 

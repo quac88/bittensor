@@ -128,6 +128,7 @@ def serve(
         return message, model_output, logits
 
     def forward_casual_lm_next(inputs_x: torch.FloatTensor, synapse, model_output=None):
+        print('causallm')
         message, model_output, topk_token_phrases = model.encode_forward_causallmnext(inputs_x.to(model.device),
                                                                                       topk=synapse.topk,
                                                                                       model_output=model_output)
